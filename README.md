@@ -15,4 +15,24 @@ DATABASE_PASSWORD=postgres
 PORT=8080
 ```
 
+---
+
+## Endpoint List
+
+Here are the endpoint list:
+
+ip:port/api/users/balance-inquiry
+```
+ip:port/api/users/balance-inquiry?username=user&accountNo=accountNumber
+```
+
+ip:port/api/transaction/withdraw
+```
+{
+    "username": "betha",
+    "accountNumber": "2024031100001",
+    "trxAmount": 10000
+}
+```
+
 Created by **Bethavianus**
