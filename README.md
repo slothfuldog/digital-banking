@@ -13,6 +13,7 @@ DATABASE_URL=jdbc:postgresql://localhost:5432/database
 DATABASE_USERNAME=postgres
 DATABASE_PASSWORD=postgres
 PORT=8080
+SERVER=127.0.0.1
 ```
 
 ---
