@@ -1,6 +1,7 @@
 package com.digibank.bank_service.service;
 
 import com.digibank.bank_service.dto.BalanceInquiryDTO;
+import com.digibank.bank_service.dto.BalanceInquiryGetDTO;
 import com.digibank.bank_service.repository.AccountBaseRepository;
 import com.digibank.bank_service.repository.UserBaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,35 +14,45 @@ import java.util.Optional;
 public class BalanceService {
     private final AccountBaseRepository accountBaseRepository;
     private final UserBaseRepository userBaseRepository;
-    private final BigDecimal currentBalance;
-    private final BigDecimal bsBalance;
 
     @Autowired
-    public BalanceService(AccountBaseRepository accountBaseRepository, UserBaseRepository userBaseRepository, BigDecimal currentBalance,
-    BigDecimal bsBalance){
+    public BalanceService(AccountBaseRepository accountBaseRepository, UserBaseRepository userBaseRepository){
         this.accountBaseRepository = accountBaseRepository;
         this.userBaseRepository = userBaseRepository;
-        this.currentBalance = currentBalance;
-        this.bsBalance = bsBalance;
     }
 
     public BalanceInquiryDTO balanceInquiry(String username, String accountNumber){
+        System.out.println("================== Balance Inquiry Service Start ===================");
+        System.out.println("username           = [" + username + "]"     );
+        System.out.println("accountNumber      = [" + accountNumber + "]");
         Optional<Long> userIdOptional = userBaseRepository.findIdByUsername(username);
         if(userIdOptional.isEmpty()){
-            return null;
+            System.out.println("ERROR BalanceService:userIdOptional: NOT FOUND!");
+            System.out.println("==================  Balance Inquiry Service End  ===================");
+
+            return new BalanceInquiryDTO(new BigDecimal(0), new BigDecimal(0), "Data Not Found", 404);
         }
 
         Long userId = userIdOptional.get();
 
-        Object[] balanceFetch = accountBaseRepository.checkBalance(userId, accountNumber);
+        System.out.println("userId             = [" + userId + "]"     );
 
-        if(balanceFetch == null || balanceFetch.length < 2){
-            return null;
+        BalanceInquiryGetDTO balanceFetch = accountBaseRepository.checkBalance(userId, accountNumber);
+
+        if(balanceFetch == null){
+            System.out.println("ERROR BalanceService:BalanceFetch: NOT FOUND!");
+            System.out.println("==================  Balance Inquiry Service End  ===================");
+            return new BalanceInquiryDTO(new BigDecimal(0), new BigDecimal(0), "Data Not Found", 404);
         }
 
-        BigDecimal currentBalance = (BigDecimal) balanceFetch[0];
-        BigDecimal bsBalance = (BigDecimal) balanceFetch[1];
+        BigDecimal bsBalance = (BigDecimal) balanceFetch.getBsBalance();
+        BigDecimal currentBalance = (BigDecimal) balanceFetch.getCurrentBalance();
 
-        return new BalanceInquiryDTO(currentBalance, bsBalance);
+        System.out.println("currentBalance =    [" + currentBalance + "]");
+        System.out.println("bsBalance      =    [" + bsBalance + "]");
+
+        System.out.println("==================  Balance Inquiry Service End  ===================");
+
+        return new BalanceInquiryDTO(currentBalance, bsBalance, "", 200);
     }
 }

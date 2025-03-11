@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class BalanceInquiryDTO {
+public class WithdrawDTO {
     private final BigDecimal currentBalance;
     private final BigDecimal bsBalance;
     private final String errorMessage;
     private final int responseCode;
 
-    public BalanceInquiryDTO(BigDecimal currentBalance, BigDecimal bsBalance,
+    public WithdrawDTO(BigDecimal currentBalance, BigDecimal bsBalance,
                              String errorMessage, int responseCode) {
         this.currentBalance = currentBalance;
         this.bsBalance = bsBalance;

@@ -8,18 +8,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class BalanceInquiryDTO {
+public class BalanceInquiryGetDTO {
     private final BigDecimal currentBalance;
     private final BigDecimal bsBalance;
-    private final String errorMessage;
-    private final int responseCode;
 
-    public BalanceInquiryDTO(BigDecimal currentBalance, BigDecimal bsBalance,
-                             String errorMessage, int responseCode) {
+
+    public BalanceInquiryGetDTO(BigDecimal currentBalance, BigDecimal bsBalance) {
         this.currentBalance = currentBalance;
         this.bsBalance = bsBalance;
-        this.errorMessage = errorMessage;
-        this.responseCode = responseCode;
     }
 
     public BigDecimal getCurrentBalance() {
@@ -30,11 +26,5 @@ public class BalanceInquiryDTO {
         return bsBalance;
     }
 
-    public String getErrorMessage(){
-        return errorMessage;
-    }
-    public int getResponseCode(){
-        return responseCode;
-    }
 }
 

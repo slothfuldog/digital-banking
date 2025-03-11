@@ -22,13 +22,10 @@ public class UserController{
     }
 
     @GetMapping("/balance-inquiry")
-    public ResponseEntity<BalanceInquiryDTO> getBalance(@RequestBody BalanceInquiryRequestDTO requestDTO){
-        BalanceInquiryDTO balanceDTO = balanceService.balanceInquiry(requestDTO.getUserName(), requestDTO.getUserName());
+    public ResponseEntity<BalanceInquiryDTO> getBalance(@RequestParam String username, @RequestParam String accountNo){
+        BalanceInquiryDTO balanceDTO = balanceService.balanceInquiry(username, accountNo);
+        System.out.println("Current responseCode: " + balanceDTO.getResponseCode());
 
-        if(balanceDTO == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(balanceDTO);
+        return ResponseEntity.status(balanceDTO.getResponseCode()).body(balanceDTO);
     }
 }

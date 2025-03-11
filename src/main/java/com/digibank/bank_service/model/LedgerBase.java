@@ -17,9 +17,7 @@ public class LedgerBase {
 
     private String referenceNo;
 
-    @ManyToOne
-    @JoinColumn(name = "account_code", referencedColumnName = "accountCode")
-    private AccountCodeBase accountCode;
+    private String accountCode;
 
     private BigDecimal trxAmount;
     private String globalId;

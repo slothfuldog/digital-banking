@@ -15,9 +15,7 @@ public class LedgerTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "account_number", referencedColumnName = "accountNumber")
-    private AccountBase account;
+    private String accountNumber;
 
     private BigDecimal beforeBalance;
     private BigDecimal trxAmt;

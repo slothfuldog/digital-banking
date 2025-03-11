@@ -5,15 +5,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.config.location=classpath:application-test.properties")
 class BankServiceApplicationTests {
 
 	@BeforeAll
 	static void setup() {
-		Dotenv dotenv = Dotenv.load();
-		System.setProperty("DATABASE_URL", dotenv.get("DATABASE_URL"));
-		System.setProperty("DATABASE_USERNAME", dotenv.get("DATABASE_USERNAME"));
-		System.setProperty("DATABASE_PASSWORD", dotenv.get("DATABASE_PASSWORD"));
+		Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+		dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
 	}
 
 	@Test

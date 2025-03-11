@@ -15,9 +15,7 @@ public class LedgerMaster {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "account_code", referencedColumnName = "accountCode")
-    private AccountCodeBase accountCode;
+    private String accountCode;
 
     private String accountType;
     private BigDecimal creditAmt;
