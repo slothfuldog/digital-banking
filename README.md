@@ -21,6 +21,20 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 
 But don't worry, the application still running. And just try to hit the endpoint.
 
+***OR***
+
+Try to use server.port = 0, it will randomly use available port.
+You can check which port is used by checking the log which usually like this.
+
+```
+Tomcat started on port 3214 (http) with context path '/'
+```
+and you can use it by hit something like:
+
+```
+http://serverip:3214/api/users/xxxxx
+```
+
 ---
 
 ## Environment Configuration
