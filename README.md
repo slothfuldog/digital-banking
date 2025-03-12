@@ -3,6 +3,24 @@
 This project is a banking system built using **Spring Boot**, **Maven**, and **PostgreSQL**, with **Flyway** for database migrations and **dotenv** for environment variable management.
 The admin fee of 7500 will be charged when making a withdrawal. You can change the fee by changing **fee** variable in **WithdrawService.java**
 
+Maybe it will show error like this:
+
+```
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+```
+
+But don't worry, the application still running. And just try to hit the endpoint.
+
 ---
 
 ## Environment Configuration
