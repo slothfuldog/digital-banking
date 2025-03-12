@@ -1,7 +1,7 @@
 # Bank Service
 
 This project is a banking system built using **Spring Boot**, **Maven**, and **PostgreSQL**, with **Flyway** for database migrations and **dotenv** for environment variable management.
-The admin fee of 7500 will be charged when making a withdrawal. You can change the fee by changing **fee** variable in **WithdrawaService.java**
+The admin fee of 7500 will be charged when making a withdrawal. You can change the fee by changing **fee** variable in **WithdrawService.java**
 
 ---
 
